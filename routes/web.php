@@ -17,6 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/post/{slug}',['as'=>'home.post','uses'=>'AdminPostsController@post']);
 
 
 Auth::routes();
@@ -29,5 +30,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::resource('/admin/users', 'AdminUsersController');
     Route::resource('/admin/posts', 'AdminPostsController');
     Route::resource('/admin/categories', 'AdminCategoriesController');
+    Route::resource('/admin/media', 'AdminMediaController');
+    Route::resource('/admin/comments', 'PostCommentController');
 });
 

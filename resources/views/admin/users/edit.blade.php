@@ -35,6 +35,7 @@
             <div class="form-group">
                 {!! Form::submit('update user',['class'=>'btn btn-primary col-md-6']) !!}
             </div>
+            {!! Form::close() !!}
             {!! Form::open(['action' => ['AdminUsersController@destroy',$user->id], 'method' => 'DELETE']) !!}
             <div class="form-group">
             {!! Form::submit('delete user',['class'=>'btn btn-danger col-md-6']) !!}
@@ -43,7 +44,7 @@
         </div>
     </div>
 
-    {!! Form::close() !!}
+
 
     @include('includes.formd_error')
 @stop

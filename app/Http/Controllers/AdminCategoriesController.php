@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Carbon\Carbon;
 use App\Category;
+use App\Http\Requests\CategoriesCreateRequest;
 use Illuminate\Http\Request;
 
 class AdminCategoriesController extends Controller
@@ -15,7 +16,8 @@ class AdminCategoriesController extends Controller
     public function index()
     {
         //
-        return view('admin.categories.index');
+        $categories = Category::all();
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -37,6 +39,8 @@ class AdminCategoriesController extends Controller
     public function store(Request $request)
     {
         //
+        Category::create($request->all());
+        return redirect('/admin/categories');
     }
 
     /**
@@ -59,6 +63,8 @@ class AdminCategoriesController extends Controller
     public function edit($id)
     {
         //
+        $categorie = Category::findOrFail($id);
+        return view('admin.categories.edit', compact('categorie'));
     }
 
     /**
@@ -68,9 +74,15 @@ class AdminCategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoriesCreateRequest $request, $id)
     {
         //
+        $categorie = Category::findOrFail($id);
+
+        $input = $request->all();
+
+        $categorie->update($input);
+        return redirect('admin/categories');
     }
 
     /**

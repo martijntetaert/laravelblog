@@ -26,7 +26,7 @@
     <!-- Custom Fonts -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
-
+    @yield('styles')
 </head>
 
 <body>
@@ -239,15 +239,11 @@
             <!-- /.dropdown -->
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    <i class="fa fa-user fa-fw"></i> {{Auth::user()->name}}<i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+
+                    <li><a href=""><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                     </li>
                 </ul>
                 <!-- /.dropdown-user -->
@@ -271,7 +267,7 @@
                         <!-- /input-group -->
                     </li>
                     <li>
-                        <a href=""><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        <a href="{{url('/')}}"><i class="fa fa-dashboard fa-fw"></i> Frontend</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-user"></i> users<span class="fa arrow"></span></a>
@@ -285,6 +281,7 @@
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
+
                     <li>
                         <a href="#"><i class="fa fa-comment"></i> Posts<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
@@ -298,13 +295,29 @@
                         <!-- /.nav-second-level -->
                     </li>
                     <li>
+                        <a href="#"><i class="fa fa-comment"></i> Comments<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="{{route('comments.index')}}">All comments</a>
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                    <li>
                         <a href="#"><i class="fa fa-star"></i> categories<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
                                 <a href="{{route('categories.index')}}">All categories</a>
                             </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-mobile"></i> media<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
                             <li>
-                                <a href="{{route('categories.create')}}">Create category</a>
+                                <a href="{{route('media.index')}}">All medias</a>
+                                <a href="{{route('media.create')}}">create media</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
@@ -438,6 +451,8 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="{{asset('js/sb-admin-2.js')}}"></script>
+
+@yield('scripts')
 
 </body>
 
